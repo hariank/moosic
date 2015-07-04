@@ -5,14 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var socket_io = require('socket.io')
+require("node-jsx").install();
 
 var app = express();
 
 var io = socket_io();
 app.io = io;
-
 var React = require('react/addons');
-var ReactApp = React.createFactory(require('/app/MusicQueue').ReactApp);
+// var ReactApp = React.createFactory(require('/app/MusicQueue').ReactApp);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,8 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
     // res.sendFile(__dirname + '/index.html');
-    var reactHtml = React.renderToString(ReactApp({}));
-    res.render('index', {title: 'Moosik'});
+    // var reactOutput = React.renderToString(ReactApp({}));
+    res.render('index', {title: 'Moosik', reactOutput: 'hi'});
 });
 
 io.on('connection', function(socket) {
