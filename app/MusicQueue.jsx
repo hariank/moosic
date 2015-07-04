@@ -8,7 +8,7 @@ var MusicQueue = React.createClass({
 
 	render: function() {
 		return (
-			<SoundCloud url={'https://soundcloud.com/sylvanesso/coffee'} onPlay={this._onPlay} />
+			<SoundCloud url={'https://soundcloud.com/zedsdead/zeds-dead-twin-shadow-lost-you-feat-dangelo-lacy'} onPlay={this._onPlay} />
 		);
 	}
 });

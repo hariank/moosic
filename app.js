@@ -17,7 +17,6 @@ app.io = io;
 var React = require('react/addons');
 var ReactApp = React.createFactory(require('./app/MusicQueue.jsx'));
 
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
