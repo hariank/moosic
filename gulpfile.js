@@ -7,11 +7,11 @@ gulp.task('scripts', function() {
 			debug: true,
 			transform: ['reactify']
 		}))
-		.pipe(gulp.dest('./public/'));
+		.pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['scripts']);
+    gulp.watch('app/*.jsx', ['scripts']);
 });
 
 gulp.task('default', ['scripts']);
