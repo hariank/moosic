@@ -1,13 +1,1 @@
-doctype html
-html
-	head
-		title= title
-		link(rel='stylesheet', href='/css/style.css')
-	body
-		h1= title
-		p Welcome to #{title}
-		#music-queue
-			div!= reactOutput
-
-		script(type='text/javascript' src='https://cdn.socket.io/socket.io-1.2.0.js')
-		script(type='text/javascript' src='http://code.jquery.com/jquery-1.11.1.js')
+include index.html

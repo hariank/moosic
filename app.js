@@ -8,14 +8,8 @@ var socket_io = require('socket.io')
 
 var app = express();
 
-require("node-jsx").install({
-    extension: '.jsx'
-});
-
 var io = socket_io();
 app.io = io;
-var React = require('react/addons');
-var ReactApp = React.createFactory(require('./app/MusicQueue.jsx'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -29,9 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-    // res.sendFile(__dirname + '/index.html');
-    var reactHTML = React.renderToString(ReactApp({}));
-    res.render('index', {title: 'Moosik', reactOutput: reactHTML});
+    res.render('index');
 });
 
 io.on('connection', function(socket) {
