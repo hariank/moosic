@@ -23,14 +23,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-    res.render('index');
+    res.render('index', {title: "Moosik"});
 });
 
 io.on('connection', function(socket) {
 	console.log('user connected');
 
-	socket.on('chat message', function(msg) {
-		io.emit('chat message', msg);
+	socket.on('track', function(track) {
+		io.emit('track', track);
 	});
 
 	socket.on('disconnect', function() {
