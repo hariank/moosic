@@ -1,14 +1,17 @@
 var trackCount = 0;
 var socket = io();
+var colorClasses = ["amber", "green", "indigo"];
 
 initQueue();
 
 function addTrack(track) {
+
 	var iframeHTML = '<iframe class="widget"> </iframe>';
 	$('#music-queue').append(iframeHTML);
 
 	var iframeEl = $('.widget:last');
 	iframeEl.addClass('z-depth-1');
+	// iframeEl.wrap('<div class="card-panel ' + colorClasses[trackCount % colorClasses.length] + '"> </div>');
 
 	var iframe = iframeEl[0];
 	iframe.width = "100%";
