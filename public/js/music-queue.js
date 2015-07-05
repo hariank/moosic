@@ -7,7 +7,9 @@ function addTrack(track) {
 
 	var iframe = $('.widget:last')[0];
 	iframe.width = "100%";
+	iframe.id = trackCount;
 	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
+	console.log(iframe);
 
 	var widget = SC.Widget(iframe);
 
@@ -20,6 +22,10 @@ function addTrack(track) {
     });
 
     widget.bind(SC.Widget.Events.FINISH, function() {
+    	if (trackCount > iframe.id) {
+    		console.log($('#' + iframe.id).next()[0]);
+	    	SC.Widget($('#' + iframe.id).next()[0]).play();
+    	}
     	removeTrack(track, iframe);
     });
 
