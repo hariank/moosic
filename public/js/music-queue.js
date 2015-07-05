@@ -3,12 +3,25 @@ function addTrack(track) {
 	$('#music-queue').append(iframeHTML);
 
 	var iframe = $('.widget:last')[0];
+	iframe.width = "100%";
 	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
 
 	var widget = SC.Widget(iframe);
 }
 
-var track = {url: "https://soundcloud.com/withlovexavier/drake-medley"};
-addTrack(track);
-var track2 = {url: "https://soundcloud.com/speakerofthehouse/derulospeakerremix"};
-addTrack(track2);
+function init() {
+
+	console.log($('form'));
+
+	$('form', '#add-track').submit(function() {
+		$('#track-input').val('');
+		return false;
+	});
+
+	var track = {url: "https://soundcloud.com/withlovexavier/drake-medley"};
+	addTrack(track);
+	var track2 = {url: "https://soundcloud.com/speakerofthehouse/derulospeakerremix"};
+	addTrack(track2);
+}
+
+init();
