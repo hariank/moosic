@@ -1,20 +1,39 @@
+var trackCount = 0;
+init();
+
 function addTrack(track) {
 	var iframeHTML = '<iframe class="widget"> </iframe>';
 	$('#music-queue').append(iframeHTML);
 
 	var iframe = $('.widget:last')[0];
 	iframe.width = "100%";
-	iframe.frameborder = "no";
 	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
 
 	var widget = SC.Widget(iframe);
+
+	var autoplay = false;
+	if (!trackCount)
+		autoplay = true;
+	
+	widget.load(track.url, {
+		auto_play: autoplay
+    });
+
+    widget.bind(SC.Widget.Events.FINISH, function() {
+    	removeTrack(track, iframe);
+    });
+
+    trackCount++;
+    console.log(trackCount);
+}
+
+function removeTrack(track, iframe) {
+	iframe.remove();
+	trackCount--;
 }
 
 function init() {
-
 	var socket = io();
-
-	console.log($('form'));
 
 	//testing
 	$('#track-input').val('https://soundcloud.com/withlovexavier/drake-medley');
@@ -31,11 +50,5 @@ function init() {
 	socket.on('track', function(track) {
 		addTrack(track);
 	});
-
-	// var track = {url: "https://soundcloud.com/withlovexavier/drake-medley"};
-	// addTrack(track);
-	// var track2 = {url: "https://soundcloud.com/speakerofthehouse/derulospeakerremix"};
-	// addTrack(track2);
 }
 
-init();
