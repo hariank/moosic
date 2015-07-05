@@ -1,6 +1,7 @@
 initSearch();
 
 function initSearch() {
+	// soundcloud api
 	SC.initialize({
 		client_id: "270bd50d6557936bcc669766f307dd5f",
 	});
@@ -10,7 +11,6 @@ function initSearch() {
 
 		var query = $('#track-input').val();
 		$('#track-input').val('');
-
 		if (query === undefined || !query.length)
 			return false;
 
@@ -21,13 +21,12 @@ function initSearch() {
 }
 
 function loadTrack(query) {
-	var song;
-
 	SC.get('/tracks', {q: query, limit: 1}, function(tracks) {
 		if (tracks.length) {
-			song = tracks[0].permalink_url;
+			// get first result
+			var song = tracks[0].permalink_url;
 			var track = {url: song};
-			console.log(track);
+			// console.log(track);
 			socket.emit('track', track);
 		}
 		else {

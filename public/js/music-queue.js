@@ -5,14 +5,17 @@ var colorClasses = ["card-panel green", "card-panel amber", "card-panel indigo"]
 initQueue();
 
 function addTrack(track) {
-
+	// add iframe
 	var iframeHTML = '<iframe class="widget"> </iframe>';
 	$('#music-queue').append(iframeHTML);
-
 	var iframeEl = $('.widget:last');
+
+	// styling classes
 	iframeEl.addClass('z-depth-1');
+	iframeEl.addClass('animated fadeInUp');
 	// iframeEl.wrap('<div class="' + colorClasses[trackCount % colorClasses.length] + '"> </div>');
 
+	// set song url
 	var iframe = iframeEl[0];
 	iframe.width = "100%";
 	iframe.id = trackCount;
@@ -40,6 +43,7 @@ function addTrack(track) {
 }
 
 function removeTrack(track, iframeEl) {
+	// fade out, then remove
 	iframeEl.addClass('animated fadeOut');
 	iframeEl.on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 		iframeEl.remove();
