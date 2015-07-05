@@ -1,6 +1,6 @@
 var trackCount = 0;
 var socket = io();
-var colorClasses = ["amber", "green", "indigo"];
+var colorClasses = ["card-panel green", "card-panel amber", "card-panel indigo"];
 
 initQueue();
 
@@ -11,7 +11,7 @@ function addTrack(track) {
 
 	var iframeEl = $('.widget:last');
 	iframeEl.addClass('z-depth-1');
-	// iframeEl.wrap('<div class="card-panel ' + colorClasses[trackCount % colorClasses.length] + '"> </div>');
+	// iframeEl.wrap('<div class="' + colorClasses[trackCount % colorClasses.length] + '"> </div>');
 
 	var iframe = iframeEl[0];
 	iframe.width = "100%";
@@ -33,15 +33,18 @@ function addTrack(track) {
     	if (trackCount > iframe.id) {
 	    	SC.Widget($('#' + iframe.id).next()[0]).play();
     	}
-    	removeTrack(track, iframe);
+    	removeTrack(track, iframeEl);
     });
 
     trackCount++;
 }
 
-function removeTrack(track, iframe) {
-	iframe.remove();
-	trackCount--;
+function removeTrack(track, iframeEl) {
+	iframeEl.addClass('animated fadeOut');
+	iframeEl.on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+		iframeEl.remove();
+		trackCount--;
+	});
 }
 
 function initQueue() {
