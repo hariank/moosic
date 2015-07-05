@@ -1,30 +1,14 @@
-var MusicQueue = React.createClass({
+function addTrack(track) {
+	var iframeHTML = '<iframe class="widget"> </iframe>';
+	$('#music-queue').append(iframeHTML);
 
-	render: function() {
-		var tracks = this.props.data.map(function(track) {
-			return (
-				<Track url={track}> </Track>
-			);
-		});
-		return (
-			<div>
-				{tracks}
-			</div>
-		);
-	}
+	var iframe = $('.widget:last')[0];
+	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
 
-});
+	var widget = SC.Widget(iframe);
+}
 
-var Track = React.createClass({
-
-	render: function() {
-		return (
-			<li> {this.props.url} </li>
-		);
-	}
-
-});
-
-var data = ["a", "b"];
-var mountNode = document.getElementById('music-queue');
-React.render(<MusicQueue data={data}/>, mountNode);
+var track = {url: "https://soundcloud.com/withlovexavier/drake-medley"};
+addTrack(track);
+var track2 = {url: "https://soundcloud.com/speakerofthehouse/derulospeakerremix"};
+addTrack(track2);
