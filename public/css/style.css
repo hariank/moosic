@@ -1,8 +1,22 @@
+.header h2, .header img{
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.header h2 {
+	padding-right: 10px;
+}
+
+#add-track {
+	padding-bottom: 20px;
+}
+#track-input {
+	width: 40%;
+	padding: 10px;
+}
+
 iframe {
 	margin: 0;
 	padding: 0;
 	border: none;
-}
-#track-input {
-	width: 40%;
 }

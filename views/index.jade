@@ -8,13 +8,15 @@ html
 	body
 		.container
 			.row
-				#header.center-align
+				.header.center-align
 					h2= title
-					#add-track
-						form#track-form(onsubmit='return false')
-							.input-field
-								input#track-input(placeholder='Type an artist or song...', autofocus)
-								button.waves-effect.waves-light.btn(type='submit') go
+					img(src='/img/cow.jpg', width=100)
+
+				#add-track.center-align
+					form#track-form(onsubmit='return false')
+						.input-field
+							input#track-input(placeholder='Type an artist or song...', autofocus)
+							//- button.waves-effect.waves-light.btn(type='submit') go
 
 			.row
 				#music-queue  
