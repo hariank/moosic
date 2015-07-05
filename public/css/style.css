@@ -1,3 +1,8 @@
-#widget {
-	border: 0px;
+iframe {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+#track-input {
+	width: 50%;
 }

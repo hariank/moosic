@@ -35,6 +35,4 @@ function loadTrack(query) {
 			return;
 		}
 	});
-
-	// var song = "https://soundcloud.com/withlovexavier/drake-medley";
 }

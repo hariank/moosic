@@ -7,7 +7,10 @@ function addTrack(track) {
 	var iframeHTML = '<iframe class="widget"> </iframe>';
 	$('#music-queue').append(iframeHTML);
 
-	var iframe = $('.widget:last')[0];
+	var iframeEl = $('.widget:last');
+	iframeEl.addClass('z-depth-1');
+
+	var iframe = iframeEl[0];
 	iframe.width = "100%";
 	iframe.id = trackCount;
 	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
@@ -39,18 +42,6 @@ function removeTrack(track, iframe) {
 }
 
 function initQueue() {
-
-	//testing
-	// $('#track-input').val('https://soundcloud.com/withlovexavier/drake-medley');
-
-	// $('form', '#add-track').submit(function() {
-	// 	var track = {url: $('#track-input').val()};
-	// 	console.log(track);
-	// 	socket.emit('track', track);
-	// 	$('#track-input').val('');
-	// 	return false;
-	// });
-
 	// receive other people's tracks
 	socket.on('track', function(track) {
 		addTrack(track);
