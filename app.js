@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-    res.render('index', {title: "Moosik"});
+    res.render('index', {title: "moosik"});
 });
 
 io.on('connection', function(socket) {

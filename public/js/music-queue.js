@@ -9,28 +9,26 @@ function addTrack(track) {
 	iframe.width = "100%";
 	iframe.id = trackCount;
 	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
-	console.log(iframe);
 
 	var widget = SC.Widget(iframe);
 
+	// auto play if queue empty
 	var autoplay = false;
 	if (!trackCount)
 		autoplay = true;
-	
 	widget.load(track.url, {
 		auto_play: autoplay
     });
 
+	// when track finishes, play next
     widget.bind(SC.Widget.Events.FINISH, function() {
     	if (trackCount > iframe.id) {
-    		console.log($('#' + iframe.id).next()[0]);
 	    	SC.Widget($('#' + iframe.id).next()[0]).play();
     	}
     	removeTrack(track, iframe);
     });
 
     trackCount++;
-    console.log(trackCount);
 }
 
 function removeTrack(track, iframe) {
