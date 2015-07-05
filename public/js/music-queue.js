@@ -1,5 +1,7 @@
 var trackCount = 0;
-init();
+var socket = io();
+
+initQueue();
 
 function addTrack(track) {
 	var iframeHTML = '<iframe class="widget"> </iframe>';
@@ -36,21 +38,20 @@ function removeTrack(track, iframe) {
 	trackCount--;
 }
 
-function init() {
-	var socket = io();
+function initQueue() {
 
 	//testing
-	$('#track-input').val('https://soundcloud.com/withlovexavier/drake-medley');
+	// $('#track-input').val('https://soundcloud.com/withlovexavier/drake-medley');
 
-	$('form', '#add-track').submit(function() {
-		var track = {url: $('#track-input').val()};
-		console.log(track);
-		// addTrack(track);
-		socket.emit('track', track);
-		// $('#track-input').val('');
-		return false;
-	});
+	// $('form', '#add-track').submit(function() {
+	// 	var track = {url: $('#track-input').val()};
+	// 	console.log(track);
+	// 	socket.emit('track', track);
+	// 	$('#track-input').val('');
+	// 	return false;
+	// });
 
+	// receive other people's tracks
 	socket.on('track', function(track) {
 		addTrack(track);
 	});
