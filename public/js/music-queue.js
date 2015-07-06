@@ -19,7 +19,7 @@ function addTrack(track) {
 	var iframe = iframeEl[0];
 	iframe.width = "100%";
 	iframe.id = trackCount;
-	iframe.src = "http://w.soundcloud.com/player/?url=" + track.url;
+	iframe.src = "https://w.soundcloud.com/player/?url=" + track.url;
 
 	var widget = SC.Widget(iframe);
 
