@@ -1,5 +1,3 @@
-initSearch();
-
 function initSearch() {
 	// soundcloud api
 	SC.initialize({
@@ -35,3 +33,5 @@ function loadTrack(query) {
 		}
 	});
 }
+
+initSearch();

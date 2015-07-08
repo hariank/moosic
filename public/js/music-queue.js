@@ -1,8 +1,5 @@
 var trackCount = 0;
-var socket = io();
 var colorClasses = ["card-panel green", "card-panel amber", "card-panel indigo"];
-
-initQueue();
 
 function addTrack(track) {
 	// add iframe
@@ -36,6 +33,10 @@ function addTrack(track) {
     	if (trackCount > iframe.id) {
 	    	SC.Widget($('#' + iframe.id).next()[0]).play();
     	}
+    	else if (trackCount > 0) {
+    		// play first in queue
+    		SC.Widget($('.widget:first')[0]).play();
+    	}
     	removeTrack(track, iframeEl);
     });
 
@@ -51,10 +52,5 @@ function removeTrack(track, iframeEl) {
 	});
 }
 
-function initQueue() {
-	// receive other people's tracks
-	socket.on('track', function(track) {
-		addTrack(track);
-	});
-}
+
 

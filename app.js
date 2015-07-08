@@ -8,8 +8,6 @@ var socket_io = require('socket.io')
 
 var app = express();
 
-var io = socket_io();
-app.io = io;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -26,15 +24,24 @@ app.get('/', function(req, res){
     res.render('index', {title: "moosic"});
 });
 
+var io = socket_io();
+app.io = io;
+
+var users = 0;
+
 io.on('connection', function(socket) {
 	console.log('user connected');
+  users++;
+  io.emit('user count', users);
 
 	socket.on('track', function(track) {
 		io.emit('track', track);
 	});
 
 	socket.on('disconnect', function() {
-		console.log('user disconnected');
+    console.log('user disconnected');
+    users--;
+    io.emit('user count', users);
 	});
 });
 
