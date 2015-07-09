@@ -12,10 +12,11 @@ html
 			.row
 				.header.center-align
 					h2= title
-					img(src='/img/cow.jpg', width=100)
+					img(src='/img/cow.jpg', width=85)
 				.tagline.center-align
-					text listen with your friends
-					span#user-count(class='badge') 4 users online 
+					.row
+						text listen with your friends
+						span#user-count(class='badge')
 
 				#add-track.center-align
 					form#track-form(onsubmit='return false')

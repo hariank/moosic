@@ -28,13 +28,18 @@ function addTrack(track) {
 		auto_play: autoplay
     });
 
+	// initial volume
+	widget.bind(SC.Widget.Events.READY, function() {
+		widget.setVolume(0.25);
+	});
+
 	// when track finishes, play next
     widget.bind(SC.Widget.Events.FINISH, function() {
     	if (trackCount > iframe.id) {
 	    	SC.Widget($('#' + iframe.id).next()[0]).play();
     	}
     	else if (trackCount > 0) {
-    		// play first in queue
+    		// wraparound in queue
     		SC.Widget($('.widget:first')[0]).play();
     	}
     	removeTrack(track, iframeEl);

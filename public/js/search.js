@@ -28,7 +28,6 @@ function loadTrack(query) {
 			socket.emit('track', track);
 		}
 		else {
-			// no tracks
 			return;
 		}
 	});

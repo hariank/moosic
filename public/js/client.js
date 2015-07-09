@@ -11,7 +11,10 @@ function socketHandler() {
 	socket.on('user count', function(count) {
 		userCount = count;
 
-		$('#user-count').text(userCount + " users online");
+		if (userCount == 1)
+			$('#user-count').text(userCount + " user online");
+		else 
+			$('#user-count').text(userCount + " users online");
 	});
 }
 
