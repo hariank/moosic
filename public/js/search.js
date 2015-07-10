@@ -21,10 +21,8 @@ function initSearch() {
 function loadTrack(query) {
 	SC.get('/tracks', {q: query, limit: 1}, function(tracks) {
 		if (tracks.length) {
-			// get first result
 			var song = tracks[0].permalink_url;
 			var track = {url: song};
-			// console.log(track);
 			socket.emit('track', track);
 		}
 		else {
