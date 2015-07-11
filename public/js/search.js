@@ -4,6 +4,8 @@ function initSearch() {
 		client_id: "270bd50d6557936bcc669766f307dd5f",
 	});
 
+	var delay;
+
 	$('form', '#add-track').submit(function(e) {
 		e.preventDefault();
 
@@ -12,7 +14,11 @@ function initSearch() {
 		if (query === undefined || !query.length)
 			return false;
 
-		loadTrack(query);
+		clearTimeout(delay);
+
+		delay = setTimeout(function() {
+			loadTrack(query);
+		}, 100);
 
 		return false;
 	});
